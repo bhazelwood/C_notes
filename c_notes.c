@@ -1,4 +1,13 @@
 //////////////////////////////////////////////////////////////////////////////
+? operator
+expr1 ? expr2 : expr3
+if expr1
+    expr2
+else
+    expr3
+//////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////
 Data Types
 char : 1 byte : -128 to 127 or 0 to 255
 unsigned char : 1 byte : 0 to 255
@@ -218,3 +227,13 @@ i = (int*)malloc(400); //dynamic (our control)
 Scope vs Visibility
 Scope: largest program region which a name can be used without qualification to entity
 Visibility: region of program which object associated w/ identifier can be accessed
+Visibility is leq to scope (e.g identifier may be "hidden" in a nested block)
+//////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////
+Storage classes
+Use extern keyword to declare but not define variable (abstract class in Java)
+static: only file scope but lifetime = program (not destroyed on next func call)
+auto: local variables auto by default
+register: suggest a variable should be stored in register
+
