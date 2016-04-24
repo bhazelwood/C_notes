@@ -317,4 +317,53 @@ cerr: stderr
 << : directs output to stream
 >> : receives data from stream
 cout << "hello world" << endl;
+int num1, num2;
+cin >> num1 >> num2;
 
+memory management
+C:
+int *p = (*int)malloc(sizeof(int));
+*p = 100;
+free(p);
+
+C++:
+int *p = new int;
+*p = 100;
+delete p;
+
+References
+can replace pointer variables
+int x;
+int &foo = x; //foo now synonym for x
+CANNOT BE REASSIGNED (&foo = y is invalid)
+New swap:
+void swap_Cpp(int &x, int &y) {
+    int temp;
+    temp = x;
+    x = y;
+    y = temp;
+}
+
+Object classes
+Class declared in .h header file
+.cpp, .c++
+class Rectangle {
+    public:
+        Rectangle (int w, int h);// Constructor
+        Rectangle(const Rectangle r); //Copy
+        int Area(void); // area method
+        ~Rectangle (void); //Destructor
+    private:
+        int width;
+        int height;
+};
+Constructor definition: Rectangle::Rectangle()
+Methods: int Rectangle::Area (void);
+
+Operator overloading
+.h: friend Rectangle operator+(const Rectangle &lhs, ...)
+.ccp: actual definition
+
+Inheritance
+class ColorRect: public Rectangle{}
+acquires all data members and member functions from Rectangle
