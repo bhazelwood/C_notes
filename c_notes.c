@@ -177,6 +177,44 @@ void *malloc(size_t size);
 Allocates contigous block of memory size bytes long
 Return type is generic pointer void*
 Returns NULL pointer if if cant allocate requested memory (TEST)
+char *line = (char *)malloc(size);
 Free
 void free(void *ptr);
+returns memory for re-use
+forgetting to free() gives memory leak
+Calloc
+void *calloc(size_t n, size_t size);
+Allocates block of memory of n elements size bytes long initialised to 0
+Ensures old data is not used inappropriately
+Realloc
+void *realloc(void *ptr, size_t size);
+Allows dynamic change in size of block of memory pointed to by ptr
+ptr must point to a block previously allocated
+can move/copy contents if necessary
+Still returns NULL pointer on failure
+//////////////////////////////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////////////////////
+Conversions
+String -> int: atoi() (also atol() and atof())
+int -> String: sprintf(char *s, char *format, <value list>)
+//////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////
+Selection operator: ->
+Used to access struct/union members on a pointer
+Usually when malloc has been used
+ptr -> color = 1;
+(*ptr).color = 1;//Are equiv
+//////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////
+Scope
+static foo(): accessible only by code in file
+Lifetime
+static int i; //life of program
+int i; //automatic/end of current block
+i = (int*)malloc(400); //dynamic (our control)
+Scope vs Visibility
+Scope: largest program region which a name can be used without qualification to entity
+Visibility: region of program which object associated w/ identifier can be accessed
