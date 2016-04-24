@@ -24,4 +24,75 @@ wc < directoryList.txt
 //////////////////////////////////////////////////////////////////////////////
 Regular Expressions
 GO OVER GUIDE
+//////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////
+Tools
+grep [options] pattern [file(s)]
+Search tool for files/output of commands with option for regex
+grep "help" file.txt : list all line with help in
+
+sort [option]... [file]...
+write sorted concatenation of all files to stdout
+sort infile.txt > outfile.txt
+
+tr [option]... SET1 [SET2]
+translates/deletes chars from SET1 to SET2
+tr 'A-Z' 'a-z' : lowercase
+tr -dc '[:print:]' : deletes all non printable chars
+
+uniq [option]... [input[output]]
+Report/omit adjacent matching lines (use sort) from INPUT to OUTPUT (or stdio)
+//////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////
+Defining Custom UNIX Commands
+forwards lines starting with a num > limit
+#include <stdio.h>
+
+int main(int argc, char* argv[]){
+    int limit;
+    sscanf(argv[1], "%d", &limit);
+    char* line = NULL;
+    size_t size;
+    while(getline(&line, &size, stdin) >0){
+        int number = 0;
+        sscanf(line,"%d", &number);
+        if(number>= limit) {
+            printf("%s", line);
+        }
+    }
+}
+//////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////
+Shell Scripts
+Collection of commands in a file
+usually .sh extension
+#!/bin/bash
+chmod a+x myscript.sh
+./myscript.sh
+
+Parameters: $1, $2,...
+
+Loop
+for f in *
+do
+    echo $f
+done
+
+If
+if [ $1 -lt $2 ]
+then
+    echo
+elif [ ... ]
+    echo
+else
+    echo
+fi
+==, !=, -gt, -lt, -le, -ge
+if [ -a FILE ] : TRUE if file exists
+if [ -z STRING ] : TRUE if string is empty
+'<command>' gets output of <command>
+e.g. TD="The time is 'date'"
 

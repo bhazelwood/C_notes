@@ -57,6 +57,13 @@ e.g
 #ifdef DEBUG
 //code
 #endif: inclusion of debugging only code
+
+Conditional include(in header.h):
+#ifndef CODE_H
+    #define CODE_H
+    extern void setCount (int val);
+#endif
+Allows header to be included many times
 //////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////////
@@ -236,4 +243,78 @@ Use extern keyword to declare but not define variable (abstract class in Java)
 static: only file scope but lifetime = program (not destroyed on next func call)
 auto: local variables auto by default
 register: suggest a variable should be stored in register
+//////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////
+Multi-file programs
+Source files (.c) contain mainly DEFINITIONS of functions & variables
+One source file must contain a function called main
+Header files (.h) contains DECLARATIONS
+
+counter.h : declarations
+counter.c : definitions #include "counter.h"
+main.c : main() #include "counter.h"
+
+Sharing identifier declarations
+counter.h : extern int count; (declaration)
+counter.c : int counter = 1; (definition)
+
+SEE: ADT
+//////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////
+ADT: Abstract Data Types
+provides abstraction from implementation details
+Encapsulation: user cant access details
+Independance: reduces num of interactions
+Flexibility: implementation change transparent
+
+Implements complex data types using structs
+Using ADT: only pointer type available to user
+struct remains private to ADT source file
+point.h : typedef struct PointStructureType *POINT_T;
+point.c :
+struct PointStructureType {
+    double array[NUM_DIMS];
+};
+//////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////
+Makefiles
+DO EXAMPLES!!
+HAS TO BE TABS
+format:
+target [target ...]: [component ...]
+    [command 1]
+    ...
+
+e.g
+all: counter.o sales.o main.c
+    gcc –o program counter.o sales.o
+counter.o: counter.c counter.h
+    gcc –c counter.c
+sales.o: sales.c sales.h
+    gcc –c sales.c
+clean:
+    rm –rf program counter.o sales.o
+
+Pattern rules
+Can specify patterns which match multiple files
+e.g.
+compile .c to .o files
+%.o: %.c
+    gcc -c $< -o $A
+//////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////
+C++
+Use g++
+
+#include <iostream> (NO .h!)
+cin: stdio
+cout: stdout
+cerr: stderr
+<< : directs output to stream
+>> : receives data from stream
+cout << "hello world" << endl;
 
